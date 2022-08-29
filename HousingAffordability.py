@@ -54,3 +54,12 @@ df['annual_pmt'] = df['monthly_pmt']*12
 df['all_in_cost'] = (price*(((i)*(1+i)**n)/(((1+i)**n)-(1))))*n + 0.2*df['MSPUS']
 df['pct_housing_costs'] = df['annual_pmt']/df['MEFAINUSA646N']
 
+df_plot = df.dropna()
+
+fig,ax = plt.subplots(1,1,dpi=500)
+fig.set_size_inches(6, 4)
+fig.suptitle('Mortgage Payment as % Income')
+ax.plot(df_plot.DATE,df_plot.pct_housing_costs,c='navy')
+ax.yaxis.set_major_formatter(ticker.PercentFormatter(xmax=1,decimals=0))
+plt.savefig('test.png')
+
